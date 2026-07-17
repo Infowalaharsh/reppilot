@@ -26,7 +26,7 @@ function Home() {
   return (
     <TabShell>
       <header className="mb-6">
-        <div className="text-sm text-muted-foreground">{greeting} \u{1f44b}</div>
+        <div className="text-sm text-muted-foreground">{greeting} 👋</div>
         <h1 className="text-3xl font-bold tracking-tight">{state.profile.name}</h1>
       </header>
 
