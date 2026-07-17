@@ -1,0 +1,7 @@
+# Nextrep
+
+> The strength app that tells you exactly what to lift next. Automatic progressive overload, workout tracking, and smart nutrition targets.
+
+## Pages
+- [Home](/): App entry that routes to onboarding or the dashboard
+- [Onboarding](/onboarding): Personalized 7-step setup that generates a training plan
