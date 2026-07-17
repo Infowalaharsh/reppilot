@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Nextrep \u2014 Your Strength Coach" },
+      { title: "Rep Pilot -  Your Strength Coach" },
       { name: "description", content: "Nextrep eliminates guesswork from strength training with automatic progressive overload, workout tracking, and nutrition coaching." },
       { name: "author", content: "Nextrep" },
       { name: "theme-color", content: "#0D0D0D" },
-      { property: "og:title", content: "Nextrep \u2014 Your Strength Coach" },
-      { property: "og:description", content: "The strength app that tells you exactly what to lift next." },
+      { property: "og:title", content: "Rep Pilot -  Your Strength Coach" },
+      { property: "og:description", content: "Nextrep eliminates guesswork from strength training with automatic progressive overload, workout tracking, and nutrition coaching." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Rep Pilot -  Your Strength Coach" },
+      { name: "twitter:description", content: "Nextrep eliminates guesswork from strength training with automatic progressive overload, workout tracking, and nutrition coaching." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/5a65749b-eedf-4a37-a3a5-5a895778cc81" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/5a65749b-eedf-4a37-a3a5-5a895778cc81" },
     ],
     links: [
       {
