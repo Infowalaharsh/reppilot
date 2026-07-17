@@ -152,7 +152,7 @@ function SessionPage() {
           return (
             <SetRow key={i} index={i} defaultWeight={ex.targetWeightKg} defaultReps={ex.targetRepsMax}
               log={s} completed={!!s?.completed}
-              onChange={(patch) => logSet(i, { weightKg: ex.targetWeightKg, reps: ex.targetRepsMax, completed: false, ...s, ...patch })}
+              onChange={(patch) => logSet(i, { ...(s ?? { weightKg: ex.targetWeightKg, reps: ex.targetRepsMax, completed: false }), ...patch })}
               onComplete={() => completeSet(i)} />
           );
         })}
