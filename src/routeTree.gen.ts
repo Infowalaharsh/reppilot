@@ -17,6 +17,8 @@ import { Route as NutritionRouteImport } from './routes/nutrition'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkoutDayIdRouteImport } from './routes/workout.$dayId'
+import { Route as WorkoutDayNewRouteImport } from './routes/workout.day.new'
+import { Route as WorkoutDayDayIdEditRouteImport } from './routes/workout.day.$dayId.edit'
 
 const WorkoutRoute = WorkoutRouteImport.update({
   id: '/workout',
@@ -58,6 +60,16 @@ const WorkoutDayIdRoute = WorkoutDayIdRouteImport.update({
   path: '/$dayId',
   getParentRoute: () => WorkoutRoute,
 } as any)
+const WorkoutDayNewRoute = WorkoutDayNewRouteImport.update({
+  id: '/day/new',
+  path: '/day/new',
+  getParentRoute: () => WorkoutRoute,
+} as any)
+const WorkoutDayDayIdEditRoute = WorkoutDayDayIdEditRouteImport.update({
+  id: '/day/$dayId/edit',
+  path: '/day/$dayId/edit',
+  getParentRoute: () => WorkoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +80,8 @@ export interface FileRoutesByFullPath {
   '/progress': typeof ProgressRoute
   '/workout': typeof WorkoutRouteWithChildren
   '/workout/$dayId': typeof WorkoutDayIdRoute
+  '/workout/day/new': typeof WorkoutDayNewRoute
+  '/workout/day/$dayId/edit': typeof WorkoutDayDayIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +92,8 @@ export interface FileRoutesByTo {
   '/progress': typeof ProgressRoute
   '/workout': typeof WorkoutRouteWithChildren
   '/workout/$dayId': typeof WorkoutDayIdRoute
+  '/workout/day/new': typeof WorkoutDayNewRoute
+  '/workout/day/$dayId/edit': typeof WorkoutDayDayIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +105,8 @@ export interface FileRoutesById {
   '/progress': typeof ProgressRoute
   '/workout': typeof WorkoutRouteWithChildren
   '/workout/$dayId': typeof WorkoutDayIdRoute
+  '/workout/day/new': typeof WorkoutDayNewRoute
+  '/workout/day/$dayId/edit': typeof WorkoutDayDayIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +119,8 @@ export interface FileRouteTypes {
     | '/progress'
     | '/workout'
     | '/workout/$dayId'
+    | '/workout/day/new'
+    | '/workout/day/$dayId/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +131,8 @@ export interface FileRouteTypes {
     | '/progress'
     | '/workout'
     | '/workout/$dayId'
+    | '/workout/day/new'
+    | '/workout/day/$dayId/edit'
   id:
     | '__root__'
     | '/'
@@ -121,6 +143,8 @@ export interface FileRouteTypes {
     | '/progress'
     | '/workout'
     | '/workout/$dayId'
+    | '/workout/day/new'
+    | '/workout/day/$dayId/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -191,15 +215,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutDayIdRouteImport
       parentRoute: typeof WorkoutRoute
     }
+    '/workout/day/new': {
+      id: '/workout/day/new'
+      path: '/day/new'
+      fullPath: '/workout/day/new'
+      preLoaderRoute: typeof WorkoutDayNewRouteImport
+      parentRoute: typeof WorkoutRoute
+    }
+    '/workout/day/$dayId/edit': {
+      id: '/workout/day/$dayId/edit'
+      path: '/day/$dayId/edit'
+      fullPath: '/workout/day/$dayId/edit'
+      preLoaderRoute: typeof WorkoutDayDayIdEditRouteImport
+      parentRoute: typeof WorkoutRoute
+    }
   }
 }
 
 interface WorkoutRouteChildren {
   WorkoutDayIdRoute: typeof WorkoutDayIdRoute
+  WorkoutDayNewRoute: typeof WorkoutDayNewRoute
+  WorkoutDayDayIdEditRoute: typeof WorkoutDayDayIdEditRoute
 }
 
 const WorkoutRouteChildren: WorkoutRouteChildren = {
   WorkoutDayIdRoute: WorkoutDayIdRoute,
+  WorkoutDayNewRoute: WorkoutDayNewRoute,
+  WorkoutDayDayIdEditRoute: WorkoutDayDayIdEditRoute,
 }
 
 const WorkoutRouteWithChildren =
@@ -217,13 +259,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
