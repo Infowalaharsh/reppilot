@@ -12,6 +12,9 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+import { useSession } from "@/hooks/useSession";
+import { pullFromCloud, startCloudSync, stopCloudSync, pushToCloud } from "@/lib/nextrep/cloudSync";
+import { loadState } from "@/lib/nextrep/storage";
 
 function NotFoundComponent() {
   return (
@@ -124,9 +127,36 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <CloudSyncBridge />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <Toaster position="top-center" theme="dark" />
     </QueryClientProvider>
   );
+}
+
+function CloudSyncBridge() {
+  const { user } = useSession();
+  useEffect(() => {
+    if (!user) {
+      stopCloudSync();
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      const pulled = await pullFromCloud(user.id);
+      if (cancelled) return;
+      startCloudSync(user.id);
+      // If nothing on cloud yet but we have local data, push it up.
+      if (!pulled) {
+        const s = loadState();
+        if (s.profile) pushToCloud(user.id);
+      }
+    })();
+    return () => {
+      cancelled = true;
+      stopCloudSync();
+    };
+  }, [user]);
+  return null;
 }

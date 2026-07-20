@@ -1,8 +1,11 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { LogOut, Settings, Target, Zap, User as UserIcon } from "lucide-react";
+import { LogOut, Settings, Target, Zap, User as UserIcon, RotateCcw } from "lucide-react";
 import { TabShell } from "@/components/nextrep/BottomNav";
 import { useAppState } from "@/hooks/useAppState";
 import { resetAll } from "@/lib/nextrep/storage";
+import { useSession } from "@/hooks/useSession";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/profile")({
   component: Profile,
@@ -12,6 +15,7 @@ export const Route = createFileRoute("/profile")({
 function Profile() {
   const state = useAppState();
   const nav = useNavigate();
+  const { user } = useSession();
   const p = state.profile;
   if (!p) return null;
 
@@ -44,6 +48,23 @@ function Profile() {
         <Row label="Target weight" value={`${p.targetWeightKg} kg`} />
       </Section>
 
+      {user && (
+        <Section title="Account">
+          <Row label="Signed in as" value={user.email ?? "—"} />
+        </Section>
+      )}
+
+      <button
+        onClick={async () => {
+          await supabase.auth.signOut();
+          toast.success("Signed out");
+          nav({ to: "/auth", replace: true });
+        }}
+        className="w-full h-12 rounded-2xl border border-white/10 text-foreground font-medium flex items-center justify-center gap-2 active:scale-[0.99] transition-transform mb-3"
+      >
+        <LogOut className="w-4 h-4" /> Sign out
+      </button>
+
       <button
         onClick={() => {
           if (confirm("Reset all data and start over?")) {
@@ -53,7 +74,7 @@ function Profile() {
         }}
         className="w-full h-12 rounded-2xl border border-destructive/30 text-destructive font-medium flex items-center justify-center gap-2 active:scale-[0.99] transition-transform"
       >
-        <LogOut className="w-4 h-4" /> Reset & start over
+        <RotateCcw className="w-4 h-4" /> Reset & start over
       </button>
     </TabShell>
   );
