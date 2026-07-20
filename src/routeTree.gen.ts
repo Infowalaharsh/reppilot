@@ -9,22 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WorkoutRouteImport } from './routes/workout'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as NutritionRouteImport } from './routes/nutrition'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkoutIndexRouteImport } from './routes/workout.index'
 import { Route as WorkoutDayIdRouteImport } from './routes/workout.$dayId'
 import { Route as WorkoutDayNewRouteImport } from './routes/workout.day.new'
 import { Route as WorkoutDayDayIdEditRouteImport } from './routes/workout.day.$dayId.edit'
 
-const WorkoutRoute = WorkoutRouteImport.update({
-  id: '/workout',
-  path: '/workout',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProgressRoute = ProgressRouteImport.update({
   id: '/progress',
   path: '/progress',
@@ -55,20 +50,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkoutIndexRoute = WorkoutIndexRouteImport.update({
+  id: '/workout/',
+  path: '/workout/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkoutDayIdRoute = WorkoutDayIdRouteImport.update({
-  id: '/$dayId',
-  path: '/$dayId',
-  getParentRoute: () => WorkoutRoute,
+  id: '/workout/$dayId',
+  path: '/workout/$dayId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const WorkoutDayNewRoute = WorkoutDayNewRouteImport.update({
-  id: '/day/new',
-  path: '/day/new',
-  getParentRoute: () => WorkoutRoute,
+  id: '/workout/day/new',
+  path: '/workout/day/new',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const WorkoutDayDayIdEditRoute = WorkoutDayDayIdEditRouteImport.update({
-  id: '/day/$dayId/edit',
-  path: '/day/$dayId/edit',
-  getParentRoute: () => WorkoutRoute,
+  id: '/workout/day/$dayId/edit',
+  path: '/workout/day/$dayId/edit',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -78,8 +78,8 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
-  '/workout': typeof WorkoutRouteWithChildren
   '/workout/$dayId': typeof WorkoutDayIdRoute
+  '/workout/': typeof WorkoutIndexRoute
   '/workout/day/new': typeof WorkoutDayNewRoute
   '/workout/day/$dayId/edit': typeof WorkoutDayDayIdEditRoute
 }
@@ -90,8 +90,8 @@ export interface FileRoutesByTo {
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
-  '/workout': typeof WorkoutRouteWithChildren
   '/workout/$dayId': typeof WorkoutDayIdRoute
+  '/workout': typeof WorkoutIndexRoute
   '/workout/day/new': typeof WorkoutDayNewRoute
   '/workout/day/$dayId/edit': typeof WorkoutDayDayIdEditRoute
 }
@@ -103,8 +103,8 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
-  '/workout': typeof WorkoutRouteWithChildren
   '/workout/$dayId': typeof WorkoutDayIdRoute
+  '/workout/': typeof WorkoutIndexRoute
   '/workout/day/new': typeof WorkoutDayNewRoute
   '/workout/day/$dayId/edit': typeof WorkoutDayDayIdEditRoute
 }
@@ -117,8 +117,8 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/profile'
     | '/progress'
-    | '/workout'
     | '/workout/$dayId'
+    | '/workout/'
     | '/workout/day/new'
     | '/workout/day/$dayId/edit'
   fileRoutesByTo: FileRoutesByTo
@@ -129,8 +129,8 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/profile'
     | '/progress'
-    | '/workout'
     | '/workout/$dayId'
+    | '/workout'
     | '/workout/day/new'
     | '/workout/day/$dayId/edit'
   id:
@@ -141,8 +141,8 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/profile'
     | '/progress'
-    | '/workout'
     | '/workout/$dayId'
+    | '/workout/'
     | '/workout/day/new'
     | '/workout/day/$dayId/edit'
   fileRoutesById: FileRoutesById
@@ -154,18 +154,14 @@ export interface RootRouteChildren {
   OnboardingRoute: typeof OnboardingRoute
   ProfileRoute: typeof ProfileRoute
   ProgressRoute: typeof ProgressRoute
-  WorkoutRoute: typeof WorkoutRouteWithChildren
+  WorkoutDayIdRoute: typeof WorkoutDayIdRoute
+  WorkoutIndexRoute: typeof WorkoutIndexRoute
+  WorkoutDayNewRoute: typeof WorkoutDayNewRoute
+  WorkoutDayDayIdEditRoute: typeof WorkoutDayDayIdEditRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/workout': {
-      id: '/workout'
-      path: '/workout'
-      fullPath: '/workout'
-      preLoaderRoute: typeof WorkoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/progress': {
       id: '/progress'
       path: '/progress'
@@ -208,44 +204,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/workout/': {
+      id: '/workout/'
+      path: '/workout'
+      fullPath: '/workout/'
+      preLoaderRoute: typeof WorkoutIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workout/$dayId': {
       id: '/workout/$dayId'
-      path: '/$dayId'
+      path: '/workout/$dayId'
       fullPath: '/workout/$dayId'
       preLoaderRoute: typeof WorkoutDayIdRouteImport
-      parentRoute: typeof WorkoutRoute
+      parentRoute: typeof rootRouteImport
     }
     '/workout/day/new': {
       id: '/workout/day/new'
-      path: '/day/new'
+      path: '/workout/day/new'
       fullPath: '/workout/day/new'
       preLoaderRoute: typeof WorkoutDayNewRouteImport
-      parentRoute: typeof WorkoutRoute
+      parentRoute: typeof rootRouteImport
     }
     '/workout/day/$dayId/edit': {
       id: '/workout/day/$dayId/edit'
-      path: '/day/$dayId/edit'
+      path: '/workout/day/$dayId/edit'
       fullPath: '/workout/day/$dayId/edit'
       preLoaderRoute: typeof WorkoutDayDayIdEditRouteImport
-      parentRoute: typeof WorkoutRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface WorkoutRouteChildren {
-  WorkoutDayIdRoute: typeof WorkoutDayIdRoute
-  WorkoutDayNewRoute: typeof WorkoutDayNewRoute
-  WorkoutDayDayIdEditRoute: typeof WorkoutDayDayIdEditRoute
-}
-
-const WorkoutRouteChildren: WorkoutRouteChildren = {
-  WorkoutDayIdRoute: WorkoutDayIdRoute,
-  WorkoutDayNewRoute: WorkoutDayNewRoute,
-  WorkoutDayDayIdEditRoute: WorkoutDayDayIdEditRoute,
-}
-
-const WorkoutRouteWithChildren =
-  WorkoutRoute._addFileChildren(WorkoutRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -254,7 +242,10 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingRoute: OnboardingRoute,
   ProfileRoute: ProfileRoute,
   ProgressRoute: ProgressRoute,
-  WorkoutRoute: WorkoutRouteWithChildren,
+  WorkoutDayIdRoute: WorkoutDayIdRoute,
+  WorkoutIndexRoute: WorkoutIndexRoute,
+  WorkoutDayNewRoute: WorkoutDayNewRoute,
+  WorkoutDayDayIdEditRoute: WorkoutDayDayIdEditRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

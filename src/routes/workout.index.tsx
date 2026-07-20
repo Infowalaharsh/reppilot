@@ -7,7 +7,7 @@ import { ConfirmDialog } from "@/components/nextrep/ConfirmDialog";
 import { useAppState } from "@/hooks/useAppState";
 import { deleteDay, duplicateDay } from "@/lib/nextrep/storage";
 
-export const Route = createFileRoute("/workout")({
+export const Route = createFileRoute("/workout/")({
   component: WorkoutIndex,
   ssr: false,
 });
