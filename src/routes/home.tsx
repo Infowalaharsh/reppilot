@@ -30,7 +30,9 @@ function Home() {
         <h1 className="text-3xl font-bold tracking-tight">{state.profile.name}</h1>
       </header>
 
-      <div className="glass rounded-3xl p-4 mb-5 flex items-center gap-4 shadow-[var(--shadow-card)]">
+      <div className="md:grid md:grid-cols-2 md:gap-5 md:items-start">
+      <div className="md:col-span-2 md:grid md:grid-cols-3 md:gap-5">
+      <div className="glass rounded-3xl p-4 mb-5 md:mb-0 flex items-center gap-4 shadow-[var(--shadow-card)]">
         <div className="w-12 h-12 rounded-2xl grid place-items-center" style={{ background: "oklch(0.78 0.17 60 / 0.2)" }}>
           <Flame className="w-6 h-6" style={{ color: "oklch(0.78 0.17 60)" }} />
         </div>
@@ -40,7 +42,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="rounded-3xl p-5 mb-5 relative overflow-hidden shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-primary)" }}>
+      <div className="rounded-3xl p-5 mb-5 md:mb-0 md:col-span-2 relative overflow-hidden shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-primary)" }}>
         <div className="absolute inset-0 opacity-20" style={{ background: "radial-gradient(400px 200px at 100% 0%, white, transparent 60%)" }} />
         <div className="relative">
           <div className="text-xs uppercase tracking-widest text-primary-foreground/80 font-medium mb-1">Today's workout</div>
@@ -51,13 +53,14 @@ function Home() {
           </Link>
         </div>
       </div>
+      </div>
 
-      <div className="grid grid-cols-2 gap-3 mb-5">
+      <div className="grid grid-cols-2 gap-3 mb-5 md:mb-0">
         <StatCard label="Calories" value={0} total={state.goals.calories} suffix="kcal" color="oklch(0.78 0.17 60)" />
         <StatCard label="Protein" value={0} total={state.goals.proteinG} suffix="g" color="oklch(0.72 0.19 155)" />
       </div>
 
-      <div className="glass rounded-3xl p-5 mb-5 shadow-[var(--shadow-card)]">
+      <div className="glass rounded-3xl p-5 mb-5 md:mb-0 shadow-[var(--shadow-card)]">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="w-4 h-4 text-primary" />
           <div className="text-xs uppercase tracking-widest text-primary font-medium">Recommended</div>
@@ -66,7 +69,7 @@ function Home() {
         <p className="text-sm text-muted-foreground">Complete today's session and we'll auto-adjust your next targets.</p>
       </div>
 
-      <div className="glass rounded-3xl p-5 shadow-[var(--shadow-card)]">
+      <div className="glass rounded-3xl p-5 md:col-span-2 shadow-[var(--shadow-card)]">
         <div className="flex items-center gap-2 mb-4">
           <TrendingUp className="w-4 h-4 text-primary" />
           <div className="text-xs uppercase tracking-widest text-primary font-medium">Weight</div>
@@ -76,6 +79,7 @@ function Home() {
           <div className="text-sm text-muted-foreground">kg</div>
           <div className="ml-auto text-xs text-muted-foreground">Target {state.profile.targetWeightKg} kg</div>
         </div>
+      </div>
       </div>
     </TabShell>
   );
