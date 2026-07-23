@@ -21,12 +21,13 @@ function Progress() {
         <h1 className="text-3xl font-bold tracking-tight">Progress</h1>
       </header>
 
-      <div className="grid grid-cols-2 gap-3 mb-5">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
         <Stat icon={<Calendar className="w-4 h-4" />} label="This week" value={`${sessionsThisWeek}`} sub="workouts" />
         <Stat icon={<TrendingUp className="w-4 h-4" />} label="Total" value={`${state.sessions.length}`} sub="sessions" />
       </div>
 
-      <div className="glass rounded-3xl p-5 mb-5 shadow-[var(--shadow-card)]">
+      <div className="md:grid md:grid-cols-2 md:gap-5">
+      <div className="glass rounded-3xl p-5 mb-5 md:mb-0 shadow-[var(--shadow-card)]">
         <div className="flex items-center gap-2 mb-4">
           <Trophy className="w-4 h-4 text-primary" />
           <div className="text-xs uppercase tracking-widest text-primary font-medium">Personal records</div>
@@ -62,6 +63,7 @@ function Progress() {
             ))}
           </div>
         )}
+      </div>
       </div>
     </TabShell>
   );
