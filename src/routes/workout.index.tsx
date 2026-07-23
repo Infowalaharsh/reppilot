@@ -29,7 +29,7 @@ function WorkoutIndex() {
           <Plus className="w-5 h-5" />
         </button>
       </header>
-      <div className="space-y-3">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         {state.plan.days.map((d) => (
           <div key={d.id} className="glass rounded-2xl p-3 shadow-[var(--shadow-card)]">
             <div className="flex items-center gap-3">

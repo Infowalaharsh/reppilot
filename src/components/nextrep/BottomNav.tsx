@@ -12,7 +12,7 @@ const tabs = [
 export function BottomNav() {
   const path = useRouterState({ select: (s) => s.location.pathname });
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-40 pb-[env(safe-area-inset-bottom)]">
+    <nav className="fixed bottom-0 inset-x-0 z-40 pb-[env(safe-area-inset-bottom)] md:hidden">
       <div className="mx-auto max-w-md px-3 pb-3">
         <div className="glass rounded-2xl px-2 py-2 shadow-[var(--shadow-card)] flex items-center justify-between">
           {tabs.map((t) => {
@@ -37,10 +37,45 @@ export function BottomNav() {
   );
 }
 
+export function SideNav() {
+  const path = useRouterState({ select: (s) => s.location.pathname });
+  return (
+    <aside className="hidden md:flex fixed inset-y-0 left-0 z-40 w-60 flex-col border-r border-white/5 bg-background/40 backdrop-blur-xl px-4 py-6">
+      <div className="flex items-center gap-2 px-2 mb-8">
+        <div className="w-9 h-9 rounded-xl grid place-items-center shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-primary)" }}>
+          <Dumbbell className="w-5 h-5 text-primary-foreground" />
+        </div>
+        <div className="text-lg font-bold tracking-tight">Nextrep</div>
+      </div>
+      <nav className="flex flex-col gap-1">
+        {tabs.map((t) => {
+          const active = path.startsWith(t.to);
+          const Icon = t.icon;
+          return (
+            <Link
+              key={t.to}
+              to={t.to}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                active
+                  ? "bg-primary/15 text-primary"
+                  : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+              }`}
+            >
+              <Icon className="w-4 h-4" />
+              {t.label}
+            </Link>
+          );
+        })}
+      </nav>
+    </aside>
+  );
+}
+
 export function TabShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen pb-28">
-      <div className="mx-auto max-w-md px-5 pt-8">{children}</div>
+    <div className="min-h-screen pb-28 md:pb-10 md:pl-60">
+      <SideNav />
+      <div className="mx-auto w-full max-w-md md:max-w-5xl px-5 md:px-10 pt-8">{children}</div>
       <BottomNav />
     </div>
   );

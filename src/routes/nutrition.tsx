@@ -41,14 +41,15 @@ function Nutrition() {
         <div className="text-xs uppercase tracking-widest text-primary font-medium mb-1">Today</div>
         <h1 className="text-3xl font-bold tracking-tight">Nutrition</h1>
       </header>
-      <div className="glass rounded-3xl p-6 mb-4 flex flex-col items-center shadow-[var(--shadow-card)]">
+      <div className="md:grid md:grid-cols-3 md:gap-5 md:items-start">
+      <div className="glass rounded-3xl p-6 mb-4 md:mb-0 flex flex-col items-center shadow-[var(--shadow-card)]">
         <Ring value={t.kcal / Math.max(1, g.calories)} size={180} stroke={14}>
           <div className="text-4xl font-bold tabular-nums">{t.kcal}</div>
           <div className="text-xs text-muted-foreground">/ {g.calories} kcal</div>
         </Ring>
         <div className="mt-3 text-sm text-muted-foreground">{Math.max(0, g.calories - t.kcal)} kcal remaining</div>
       </div>
-      <div className="grid grid-cols-3 gap-3 mb-4">
+      <div className="grid grid-cols-3 gap-3 mb-4 md:mb-0 md:col-span-2">
         {macros.map((m) => (
           <div key={m.label} className="glass rounded-2xl p-3 flex flex-col items-center shadow-[var(--shadow-card)]">
             <Ring value={m.value / Math.max(1, m.target)} size={64} stroke={6} color={m.color}>
@@ -58,7 +59,7 @@ function Nutrition() {
           </div>
         ))}
       </div>
-      <div className="glass rounded-2xl p-4 mb-6 flex items-center gap-3 shadow-[var(--shadow-card)]">
+      <div className="glass rounded-2xl p-4 mb-6 md:mb-0 md:col-span-3 flex items-center gap-3 shadow-[var(--shadow-card)]">
         <div className="w-10 h-10 rounded-xl grid place-items-center bg-primary/10 text-primary"><Droplet className="w-5 h-5" /></div>
         <div className="flex-1">
           <div className="text-sm font-semibold">Water</div>
@@ -67,7 +68,8 @@ function Nutrition() {
         <button onClick={() => addWater(todayStr(), 250)} className="h-9 px-3 rounded-xl text-xs font-semibold bg-primary/10 text-primary">+250ml</button>
         <button onClick={() => addWater(todayStr(), -250)} className="h-9 px-3 rounded-xl text-xs font-semibold bg-white/5">-250</button>
       </div>
-      <div className="space-y-3 mb-6">
+      </div>
+      <div className="grid gap-3 mb-6 mt-6 md:grid-cols-2">
         {SLOTS.map((s) => {
           const items = meals.filter((m) => m.slot === s.id);
           const kcal = items.reduce((a, m) => a + m.kcal, 0);
