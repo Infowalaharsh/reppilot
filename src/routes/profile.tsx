@@ -27,7 +27,7 @@ function Profile() {
         </div>
         <div>
           <h1 className="text-2xl font-bold tracking-tight">{p.name}</h1>
-          <div className="text-xs text-muted-foreground capitalize">{p.experience} \u00b7 {p.goal.replace("_", " ")}</div>
+          <div className="text-xs text-muted-foreground capitalize">{p.experience} · {p.goal.replace("_", " ")}</div>
         </div>
       </header>
 
@@ -84,7 +84,7 @@ function MiniStat({ label, value, unit }: { label: string; value: string; unit: 
   return (
     <div className="glass rounded-2xl p-3 text-center shadow-[var(--shadow-card)]">
       <div className="text-xl font-bold tabular-nums">{value}</div>
-      <div className="text-[10px] text-muted-foreground">{label} \u00b7 {unit}</div>
+      <div className="text-[10px] text-muted-foreground">{label} · {unit}</div>
     </div>
   );
 }

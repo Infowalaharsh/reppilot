@@ -120,12 +120,12 @@ function SessionPage() {
           <div className="text-xs text-muted-foreground mb-1">Target weight</div>
           <div className="text-2xl font-bold tabular-nums">{ex.targetWeightKg}<span className="text-sm text-muted-foreground ml-1">kg</span></div>
           {ex.lastPerformance && ex.lastPerformance[0] && (
-            <div className="text-[10px] mt-1" style={{ color: "oklch(0.72 0.19 155)" }}>\u2191 from {ex.lastPerformance[0].weightKg}kg</div>
+            <div className="text-[10px] mt-1" style={{ color: "oklch(0.72 0.19 155)" }}>↑ from {ex.lastPerformance[0].weightKg}kg</div>
           )}
         </div>
         <div className="glass rounded-2xl p-4 shadow-[var(--shadow-card)]">
           <div className="text-xs text-muted-foreground mb-1">Target reps</div>
-          <div className="text-2xl font-bold tabular-nums">{ex.targetRepsMin}\u2013{ex.targetRepsMax}</div>
+          <div className="text-2xl font-bold tabular-nums">{ex.targetRepsMin}–{ex.targetRepsMax}</div>
           <div className="text-[10px] text-muted-foreground mt-1">{ex.sets} sets</div>
         </div>
       </div>

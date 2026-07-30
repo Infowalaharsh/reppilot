@@ -39,7 +39,7 @@ function Progress() {
             {computePRs(state.sessions).slice(0, 5).map((pr) => (
               <div key={pr.name} className="flex items-center justify-between py-1.5">
                 <div className="font-medium text-sm">{pr.name}</div>
-                <div className="font-bold tabular-nums text-primary">{pr.weight} kg \u00d7 {pr.reps}</div>
+                <div className="font-bold tabular-nums text-primary">{pr.weight} kg × {pr.reps}</div>
               </div>
             ))}
           </div>

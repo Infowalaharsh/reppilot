@@ -163,7 +163,7 @@ function BodyStep({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
 function ExpStep({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
   const opts: { v: Experience; t: string; d: string }[] = [
     { v: "beginner", t: "Beginner", d: "Less than 1 year lifting" },
-    { v: "intermediate", t: "Intermediate", d: "1\u20133 years, know the basics" },
+    { v: "intermediate", t: "Intermediate", d: "1–3 years, know the basics" },
     { v: "advanced", t: "Advanced", d: "3+ years, chasing PRs" },
   ];
   return (
@@ -224,7 +224,7 @@ function FreqStep({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
 
 function SplitStep({ draft, set }: { draft: Draft; set: (p: Draft) => void }) {
   const opts: { v: SplitType; t: string; d: string }[] = [
-    { v: "ppl", t: "Push \u00b7 Pull \u00b7 Legs", d: "3-day rotation, great for 4\u20136 days" },
+    { v: "ppl", t: "Push · Pull · Legs", d: "3-day rotation, great for 4–6 days" },
     { v: "upperlower", t: "Upper / Lower", d: "Balanced, ideal for 4 days" },
     { v: "fullbody", t: "Full Body", d: "Hit everything each session" },
   ];

@@ -34,7 +34,7 @@ export function generatePlan(p: Profile): Plan {
   const push: WorkoutDay = {
     id: "push",
     name: "Push Day",
-    focus: "Chest \u00b7 Shoulders \u00b7 Triceps",
+    focus: "Chest · Shoulders · Triceps",
     exercises: [
       ex("bench", "Bench Press", "Chest", "Barbell", s(0.9), [6, 8], 4, 120),
       ex("ohp", "Overhead Press", "Shoulders", "Barbell", s(0.55), [6, 8], 3, 120),
@@ -46,7 +46,7 @@ export function generatePlan(p: Profile): Plan {
   const pull: WorkoutDay = {
     id: "pull",
     name: "Pull Day",
-    focus: "Back \u00b7 Biceps \u00b7 Rear delts",
+    focus: "Back · Biceps · Rear delts",
     exercises: [
       ex("deadlift", "Deadlift", "Back", "Barbell", s(1.4), [4, 6], 3, 180),
       ex("pullup", "Pull-Up", "Back", "Bodyweight", 0, [6, 10], 3, 120),
@@ -58,7 +58,7 @@ export function generatePlan(p: Profile): Plan {
   const legs: WorkoutDay = {
     id: "legs",
     name: "Leg Day",
-    focus: "Quads \u00b7 Hamstrings \u00b7 Glutes",
+    focus: "Quads · Hamstrings · Glutes",
     exercises: [
       ex("squat", "Back Squat", "Quads", "Barbell", s(1.2), [5, 8], 4, 150),
       ex("rdl", "Romanian Deadlift", "Hamstrings", "Barbell", s(1.0), [8, 10], 3, 120),
@@ -70,7 +70,7 @@ export function generatePlan(p: Profile): Plan {
   const upper: WorkoutDay = {
     id: "upper",
     name: "Upper Body",
-    focus: "Chest \u00b7 Back \u00b7 Arms",
+    focus: "Chest · Back · Arms",
     exercises: [
       ex("bench", "Bench Press", "Chest", "Barbell", s(0.9), [6, 8], 4, 120),
       ex("row", "Barbell Row", "Back", "Barbell", s(0.75), [6, 10], 3, 90),
@@ -82,7 +82,7 @@ export function generatePlan(p: Profile): Plan {
   const lower: WorkoutDay = {
     id: "lower",
     name: "Lower Body",
-    focus: "Quads \u00b7 Hamstrings \u00b7 Glutes",
+    focus: "Quads · Hamstrings · Glutes",
     exercises: [
       ex("squat", "Back Squat", "Quads", "Barbell", s(1.2), [5, 8], 4, 150),
       ex("rdl", "Romanian Deadlift", "Hamstrings", "Barbell", s(1.0), [8, 10], 3, 120),

@@ -37,7 +37,7 @@ function WorkoutIndex() {
                 <div className="w-11 h-11 rounded-2xl grid place-items-center bg-primary/10"><Dumbbell className="w-5 h-5 text-primary" /></div>
                 <div className="flex-1 min-w-0">
                   <div className="font-semibold truncate">{d.name}</div>
-                  <div className="text-xs text-muted-foreground truncate">{d.focus} \u00b7 {d.exercises.length} exercises</div>
+                  <div className="text-xs text-muted-foreground truncate">{d.focus} · {d.exercises.length} exercises</div>
                 </div>
               </Link>
               <Link to="/workout/$dayId" params={{ dayId: d.id }} className="w-10 h-10 rounded-xl grid place-items-center bg-primary text-primary-foreground shadow-[var(--shadow-glow)] active:scale-95 transition-transform" aria-label="Start">
