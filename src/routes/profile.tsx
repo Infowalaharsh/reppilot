@@ -6,6 +6,7 @@ import { resetAll } from "@/lib/nextrep/storage";
 import { useSession } from "@/hooks/useSession";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { AccountEditor } from "@/components/nextrep/AccountEditor";
 
 export const Route = createFileRoute("/profile")({
   component: Profile,
@@ -30,6 +31,8 @@ function Profile() {
           <div className="text-xs text-muted-foreground capitalize">{p.experience} · {p.goal.replace("_", " ")}</div>
         </div>
       </header>
+
+      <AccountEditor localName={p.name} />
 
       <div className="grid grid-cols-3 gap-3 mb-5">
         <MiniStat label="Weight" value={`${p.weightKg}`} unit="kg" />
