@@ -55,7 +55,7 @@ function Nutrition() {
             <Ring value={m.value / Math.max(1, m.target)} size={64} stroke={6} color={m.color}>
               <div className="text-xs font-bold tabular-nums">{m.value}</div>
             </Ring>
-            <div className="text-[10px] text-muted-foreground mt-1">{m.label} \u00b7 {m.target}g</div>
+            <div className="text-[10px] text-muted-foreground mt-1">{m.label} · {m.target}g</div>
           </div>
         ))}
       </div>
@@ -78,7 +78,7 @@ function Nutrition() {
               <div className="flex items-center gap-3">
                 <div className="flex-1">
                   <div className="font-semibold">{s.label}</div>
-                  <div className="text-xs text-muted-foreground">{kcal} kcal \u00b7 {items.length} item{items.length === 1 ? "" : "s"}</div>
+                  <div className="text-xs text-muted-foreground">{kcal} kcal · {items.length} item{items.length === 1 ? "" : "s"}</div>
                 </div>
                 <button onClick={() => setSlot(s.id)} className="w-10 h-10 rounded-full grid place-items-center bg-primary/10 text-primary" aria-label="Add"><Plus className="w-4 h-4" /></button>
               </div>
