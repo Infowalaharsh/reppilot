@@ -83,7 +83,7 @@ function Welcome({ onNext: _onNext }: { onNext: () => void }) {
       <div className="w-20 h-20 rounded-3xl grid place-items-center shadow-[var(--shadow-glow)] mb-8" style={{ background: "var(--gradient-primary)" }}>
         <Dumbbell className="w-10 h-10 text-primary-foreground" />
       </div>
-      <h1 className="text-4xl font-bold tracking-tight mb-3">Welcome to <span className="text-gradient">Nextrep</span></h1>
+      <h1 className="text-4xl font-bold tracking-tight mb-3">Welcome to <span className="text-gradient">Reppilot</span></h1>
       <p className="text-muted-foreground max-w-xs mb-8 leading-relaxed">Stop guessing. We'll tell you exactly what to lift, when to push, and when to rest.</p>
       <div className="w-full space-y-3 text-left">
         {["Automatic progressive overload","Personalized workout plans","Smart nutrition targets"].map((f) => (

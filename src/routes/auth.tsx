@@ -77,7 +77,7 @@ function AuthPage() {
           >
             <Dumbbell className="w-8 h-8 text-primary-foreground" />
           </div>
-          <h1 className="text-3xl font-bold tracking-tight">Nextrep</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Reppilot</h1>
           <p className="text-sm text-muted-foreground mt-1">
             {mode === "signin" ? "Sign in to sync your training" : "Create your account"}
           </p>
