@@ -20,6 +20,8 @@
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
@@ -63,7 +65,7 @@
 
 :root {
   --radius: 1rem;
-  /* Nextrep — dark first */
+  /* Reppilot — dark first */
   --background: oklch(0.14 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.19 0 0);
@@ -149,6 +151,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "cv11", "ss01", "ss03";
     -webkit-font-smoothing: antialiased;
     background-image: var(--gradient-hero);

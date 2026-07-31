@@ -31,7 +31,7 @@ function Index() {
         <div className="w-14 h-14 rounded-2xl grid place-items-center shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-primary)" }}>
           <Dumbbell className="w-7 h-7 text-primary-foreground" />
         </div>
-        <div className="text-lg font-semibold tracking-tight">Nextrep</div>
+        <div className="text-lg font-semibold tracking-tight">Reppilot</div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-# Nextrep
+# Reppilot
 
 > The strength app that tells you exactly what to lift next. Automatic progressive overload, workout tracking, and smart nutrition targets.
 
