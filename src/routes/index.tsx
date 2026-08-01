@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { Dumbbell } from "lucide-react";
 import { loadState } from "@/lib/nextrep/storage";
+import markAsset from "@/assets/reppilot-mark.png.asset.json";
 import { useSession } from "@/hooks/useSession";
 
 export const Route = createFileRoute("/")({
@@ -28,9 +28,7 @@ function Index() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="flex flex-col items-center gap-3 animate-pulse">
-        <div className="w-14 h-14 rounded-2xl grid place-items-center shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-primary)" }}>
-          <Dumbbell className="w-7 h-7 text-primary-foreground" />
-        </div>
+        <img src={markAsset.url} alt="Reppilot logo" className="w-14 h-14 object-contain" />
         <div className="text-lg font-semibold tracking-tight">Reppilot</div>
       </div>
     </div>
