@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Dumbbell, Mail, Lock, Loader2 } from "lucide-react";
+import { Mail, Lock, Loader2 } from "lucide-react";
+import markAsset from "@/assets/reppilot-mark.png.asset.json";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
@@ -71,12 +72,7 @@ function AuthPage() {
     <div className="min-h-screen flex flex-col justify-center px-6 py-10">
       <div className="mx-auto w-full max-w-sm">
         <div className="flex flex-col items-center mb-8">
-          <div
-            className="w-16 h-16 rounded-2xl grid place-items-center shadow-[var(--shadow-glow)] mb-4"
-            style={{ background: "var(--gradient-primary)" }}
-          >
-            <Dumbbell className="w-8 h-8 text-primary-foreground" />
-          </div>
+          <img src={markAsset.url} alt="Reppilot logo" className="w-16 h-16 object-contain mb-4" />
           <h1 className="text-3xl font-bold tracking-tight">Reppilot</h1>
           <p className="text-sm text-muted-foreground mt-1">
             {mode === "signin" ? "Sign in to sync your training" : "Create your account"}

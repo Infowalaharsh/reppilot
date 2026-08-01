@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, Dumbbell, Apple, TrendingUp, User } from "lucide-react";
+import markAsset from "@/assets/reppilot-mark.png.asset.json";
 
 const tabs = [
   { to: "/home", label: "Home", icon: Home },
@@ -42,10 +43,8 @@ export function SideNav() {
   return (
     <aside className="hidden md:flex fixed inset-y-0 left-0 z-40 w-60 flex-col border-r border-white/5 bg-background/40 backdrop-blur-xl px-4 py-6">
       <div className="flex items-center gap-2 px-2 mb-8">
-        <div className="w-9 h-9 rounded-xl grid place-items-center shadow-[var(--shadow-glow)]" style={{ background: "var(--gradient-primary)" }}>
-          <Dumbbell className="w-5 h-5 text-primary-foreground" />
-        </div>
-        <div className="text-lg font-bold tracking-tight">Nextrep</div>
+        <img src={markAsset.url} alt="Reppilot logo" className="w-8 h-8 object-contain" />
+        <div className="text-lg font-bold tracking-tight">Reppilot</div>
       </div>
       <nav className="flex flex-col gap-1">
         {tabs.map((t) => {
