@@ -112,6 +112,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  // The Android entry provides its own HTML document and bundled styles.
+  if (import.meta.env.VITE_ANDROID_BUILD) return <>{children}</>;
   return (
     <html lang="en">
       <head>
