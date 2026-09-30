@@ -21,3 +21,16 @@ body {
 nav.fixed.bottom-0 {
   padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
 }
+
+/* Keep native form controls and numeric/chart labels on the app typeface. */
+:root {
+  --font-mono: "Poppins", sans-serif;
+}
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Poppins", sans-serif;
+}
