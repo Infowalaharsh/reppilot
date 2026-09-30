@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "mobile/**/*.ts",
+    "mobile/**/*.tsx",
+    "vite.android.config.ts",
+    "capacitor.config.ts"
+  ]
+}
